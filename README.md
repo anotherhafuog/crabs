@@ -32,3 +32,11 @@ Dependencies: None  <br>
 Call: T = getTranslation(xCapt,yCapt); will generate a matrix to shift the captain, based on x-value xCapt and y-value yCapt <br>
 Side Effects: None <br>
 <br>
+function: moveCapt: string number number number number number -> number number number <br>
+purpose: Takes the position, heading, user input, and map width and height, and returns a new position and heading for the captian based on the user input and whether it is on the map. <br>
+Dependencies: isOnMap  <br>
+Call: [xCapt, yCapt, thetaCapt] = moveCapt(cmd, xCapt, yCapt, thetaCapt, mapWidth, mapHeight); will return new values for the captain's position and heading <br>
+Side Effects: None <br>
+<br>
+
+
