@@ -24,8 +24,28 @@ endif
 thetaCrab = theta;
 
 elseif ( cmd == "l" ) %move right
+xTemp = x - dStep*sin(theta);
+yTemp = y - dStep*cos(theta);
+if (isOnMap(xTemp,yTemp,width,height))
+xCrab = xTemp;
+yCrab = yTemp;
+else
+xCrab = x;
+yCrab = y;
+endif
+thetaCrab = theta;
 
 elseif ( cmd == "j" ) %move left
+xTemp = x + dStep*sin(theta);
+yTemp = y + dStep*cos(theta);
+if (isOnMap(xTemp,yTemp,width,height))
+xCrab = xTemp;
+yCrab = yTemp;
+else
+xCrab = x;
+yCrab = y;
+endif
+thetaCrab = theta;
 
 else % if none of the cases are true, set the new variables equal to the old inputs.
 xCrab = x;
