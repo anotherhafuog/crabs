@@ -1,4 +1,4 @@
-function captainGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
+function [captainGraphics,xNet,yNet] = drawCapt(xCapt,yCapt,thetaCapt,sizeCapt)
 % In the future, this function will draw the captain at the given
 % position (xCapt , yCapt) , with heading thetaCapt.
 % For now, it draws the captain at the (0, 0) with 0 heading.
@@ -33,6 +33,9 @@ pt11=capt( : , 11);
 pt12=capt( : , 12);
 pt13=capt( : , 13);
 pt14=capt( : , 14);
+%Set the spearhead point
+xNet = pt13(1);
+yNet = pt13(2);
 % Draw the captain and set the return vector of graphics handles.
 captainGraphics(1) = drawLine(pt1 , pt2 , "k");
 captainGraphics(2) = drawLine(pt2 , pt3 , "k");
