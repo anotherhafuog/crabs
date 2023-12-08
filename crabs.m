@@ -5,6 +5,7 @@ numJelly = level;
 % hunts for a very clever and powerful crab.
 % Draw the game map and initialize map dimensions.
 [mapHeight , mapWidth] = drawMap( "BGImage.png" );
+
 %initialize captain location, heading and size
 xCapt = 1000;
 yCapt = 500;
@@ -12,6 +13,7 @@ thetaCapt = -pi/2;
 sizeCapt = 50;
 healthCapt = 100;
 crabsCaught = 0;
+
 %initialize crab location, heading and size
 xCrab = rand(1,numCrabs)*mapWidth;
 yCrab = 3*mapHeight/4 + rand(1,numCrabs)*mapHeight/4;
@@ -19,17 +21,20 @@ thetaCrab = ones(1,numCrabs)*(-pi/2);
 crabsCaught = 0;
 sizeCrab = 50;
 isCrabCaught = zeros(1,numCrabs);
+
 %initialize jelly fish
 xJelly=rand(1,numJelly)*mapWidth;
 yJelly=zeros(1,numJelly);;
 thetaJelly = ones(1,numJelly)*(-pi/2);
 sizeJelly = 25;
 jellySting = 2;
+
 % Draw the captain and initialize graphics handles
 %*********************************************************
 % Put your call to drawCapt() here ..... You must give drawCapt its
 % input and output arguments.
 [captGraphics,xNet,yNet] = drawCapt(xCapt,yCapt,thetaCapt,sizeCapt);
+
 %draw crabs
 for k=1:numCrabs
   crabGraphics(:,k) = drawCrab(xCrab(k),yCrab(k),thetaCrab(k),sizeCrab);
@@ -96,10 +101,7 @@ for k=1:numCrabs
      %erase old crab
      for i=1:length(crabGraphics(:,k))
        delete(crabGraphics(i,k));
-      endfor
-
-
-
+     endfor
 
   endif
 
@@ -110,6 +112,7 @@ for j=1:numJelly
     healthCapt = healthCapt - jellySting;
   endif
 endfor
+
 fflush(stdout);
 pause(.01)
 endwhile
