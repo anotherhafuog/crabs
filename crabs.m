@@ -3,7 +3,7 @@ function crabs()
   playGame = 1;
   while(playGame)
   %draw start screen
-  level = drawStartScreen("startScreen.png")
+  level = drawStartScreen("startScreen.png");
   numCrabs = level;
   numJelly = level;
   % Crabs is a kids computer game where a fisherman, called the captain,
@@ -29,7 +29,7 @@ function crabs()
 
   %initialize jelly fish
   xJelly=rand(1,numJelly)*mapWidth;
-  yJelly=zeros(1,numJelly);;
+  yJelly=rand(1,numJelly)*mapHeight;
   thetaJelly = ones(1,numJelly)*(-pi/2);
   sizeJelly = 25;
   jellySting = 2;
@@ -49,23 +49,23 @@ function crabs()
     jellyGraphics(:,j) = drawJelly(xJelly(j),yJelly(j),thetaJelly(j),sizeJelly);
   endfor
   %*******************************************************
+
   % print health status
   healthLoc = [100,100];
   crabsCaughtLoc = [100,175];
-  healthStatus = text(healthLoc(1), healthLoc(2), strcat('Health = ', ...
-  num2str(healthCapt)), 'FontSize', 12, 'Color', 'red');
-  crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2), ...
-  strcat('Crabs Caught = ',num2str(crabsCaught)), 'FontSize', 12, 'Color', 'red');
+  myHealthMessage = ['Health ', num2str(healthCapt)];
+  myCaughtMessage = ['Crabs Caught ',num2str(crabsCaught)];
+  healthStatus = text(healthLoc(1), healthLoc(2), myHealthMessage, 'FontSize', 12, 'Color', 'red');
+  crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2), myCaughtMessage, 'FontSize', 12, 'Color', 'red');
 
   while(1)
   %remove old and plot new health and points status to screen
     delete(healthStatus);
     delete(crabsCaughtStatus);
-    healthStatus = text(healthLoc(1), healthLoc(2), strcat('Health = ', ...
-    num2str(healthCapt)), 'FontSize', 12, 'Color', 'red');
-    crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2),
-    strcat('Crabs Caught = ', ...
-    num2str(crabsCaught)), 'FontSize', 12, 'Color', 'red');
+    myHealthMessage = ['Health = ', num2str(healthCapt)];
+    myCaughtMessage = ['Crabs Caught = ',num2str(crabsCaught)];
+    healthStatus = text(healthLoc(1), healthLoc(2), myHealthMessage, 'FontSize', 12, 'Color', 'red');
+    crabsCaughtStatus = text(crabsCaughtLoc(1), crabsCaughtLoc(2), myCaughtMessage, 'FontSize', 12, 'Color', 'red');
     % erase old jellyfish
     for j=1:numJelly
       for i=1:length(jellyGraphics(:,j))
@@ -79,6 +79,7 @@ function crabs()
     endfor
 
     % read the keyboard
+    commandwindow();
     cmd = kbhit(1);
     if (cmd == 'Q')
      break;
@@ -117,6 +118,10 @@ function crabs()
       healthCapt = healthCapt - jellySting;
     endif
   endfor
+
+  if ((crabsCaught == numCrabs) || (healthCapt <= 0))
+    playGame = drawEndScreen("startScreen.png",crabsCaught,numCrabs);
+  endif
 
   fflush(stdout);
   pause(.01)
