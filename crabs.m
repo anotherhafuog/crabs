@@ -120,7 +120,7 @@ function crabs()
   endfor
 
   if ((crabsCaught == numCrabs) || (healthCapt <= 0))
-    playGame = drawEndScreen("startScreen.png",crabsCaught,numCrabs);
+    break;
   endif
 
   fflush(stdout);

@@ -6,7 +6,7 @@ function restart = drawEndScreen (imgName,crabsCaught,numCrabs)
   textLoc = [10,250];
   myTextHandle=text(textLoc(1), textLoc(2), myMessage, 'FontSize', 30, 'Color', 'red');
   pause(5)
-  %delete(myTextHandle);
+  delete(myTextHandle);
   textLoc = [100,50];
   myMessage2 = ['Play again? Y/N'];
   myTextHandle=text(textLoc(1), textLoc(2), myMessage2, 'FontSize', 40, 'Color', 'red');
